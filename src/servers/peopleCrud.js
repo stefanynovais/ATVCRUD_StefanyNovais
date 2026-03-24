@@ -1,7 +1,7 @@
 // criando as funções principais 
 
 
-import { API_URL } from "./configApi";
+import { API_URL } from "./configApi.js";
 
 /*
 Função para buscar todas as pessoas

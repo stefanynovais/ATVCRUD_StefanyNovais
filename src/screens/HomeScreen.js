@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, Button } from "react-native";
 
-import styles from "../styles/styles";
+import styles from "../styles/styles.js";
 
-import { getPeople, deletePerson } from "../servers/peopleCrud";
+import { getPeople, deletePerson } from "../servers/peopleCrud.js";
 
 export default function HomeScreen({ navigation }) {
 
@@ -26,11 +26,11 @@ export default function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Pessoas</Text>
-            <Text style={styles.title}>Pessoas</Text>  {/* ← parece repetido, talvez erro de copiar */}
+    
 
             <Button
                 title="Adicionar Pessoa"
-                onPress={() => navigation.navigate("Add")}
+                onPress={() => navigation.navigate("AddEditScreen")}
             />
 
             <FlatList
@@ -64,7 +64,7 @@ export default function HomeScreen({ navigation }) {
       <View>
         <Button
           title="Editar"
-          onPress={() => navigation.navigate("AddEdit", { person: item })}
+          onPress={() => navigation.navigate("AddEditScreen", { person: item })}
         />
 
         <Button

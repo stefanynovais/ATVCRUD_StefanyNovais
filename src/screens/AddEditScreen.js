@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button } from 'react-native';
 
-import styles from '../styles/styles';
-import { createPerson, updatePerson } from '../servers/peopleCrud';
+import styles from '../styles/styles.js';
+import { createPerson, updatePerson } from '../servers/peopleCrud.js';
 
 export default function AddEditScreen({ route, navigation }) {
     const person = route.params?.person;
