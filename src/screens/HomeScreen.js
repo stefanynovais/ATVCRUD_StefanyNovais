@@ -59,6 +59,10 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.email}>
           {item.email}
         </Text>
+
+         <Text style={styles.phone}>
+          {item.phone}
+        </Text>
       </View>
 
       <View>
