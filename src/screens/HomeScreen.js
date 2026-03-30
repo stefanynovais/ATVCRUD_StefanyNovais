@@ -4,51 +4,77 @@ import { View, Text, FlatList, Button } from "react-native";
 import styles from "../styles/styles.js";
 
 import { getPeople, deletePerson } from "../servers/peopleCrud.js";
+import { TextInput } from "react-native-web";
 
 export default function HomeScreen({ navigation }) {
 
-    // estado da lista
-    const [people, setPeople] = useState([]);
+  // estado da lista
+  const [people, setPeople] = useState([]);
+  const [busca, setBusca] = useState('');
 
-    // função para carregar dados
-    async function loadPeople() {
+  //para filtrar o usuário
+  const filtrarPessoa = people.filter(usuario => usuario.firstName.toLowerCase().includes(busca.toLowerCase().trim()));
 
-        const data = await getPeople();
+  // função para carregar dados
+  async function loadPeople() {
 
-        setPeople(data);
-    }
+    const data = await getPeople();
 
-    // executa ao abrir tela
-    useEffect(() => {
-        loadPeople();
-    }, []);
+    setPeople(data);
+  }
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Pessoas</Text>
-    
+  // executa ao abrir tela
+  useEffect(() => {
+    loadPeople();
+  }, []);
 
-            <Button
-                title="Adicionar Pessoa"
-                onPress={() => navigation.navigate("AddEditScreen")}
-            />
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Pessoas</Text>
+      <TextInput
+        value={busca}
+        onChangeText={setBusca}
+        placeholder="Buscar usuários..."
+        style={{
+          borderWidth: 1,
+          margin: 10,
+          padding: 8,
+          borderRadius: 8
+        }}
+      />
 
-            <FlatList
-                data={people}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <CardPersonal
-                        item={item}
-                        navigation={navigation}
-                        refresh={loadPeople}
-                    />
-                )}
-            />
-        </View>
-    );
-   } 
-   
-    function CardPersonal({ item, navigation, refresh }) {
+       {/* <FlatList
+        data={filtrarPessoa}
+        renderItem={({item}) => 
+        <Item firstName={item.firstName} 
+        lastName = {item.lastName}
+        email={item.email}
+        phone={item.phone}
+        />}
+        keyExtractor={item => item.id.toString()}
+      /> */}
+
+      <Button
+        title="Adicionar Pessoa"
+        onPress={() => navigation.navigate("AddEditScreen")}
+      />
+
+      <FlatList
+        data={filtrarPessoa}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <CardPersonal
+            item={item}
+            navigation={navigation}
+            refresh={loadPeople}
+          />
+        )}
+      />
+    </View>
+  );
+}
+
+function CardPersonal({ item, navigation, refresh }) {
   return (
     <View style={styles.card}>
       <View>
@@ -60,7 +86,7 @@ export default function HomeScreen({ navigation }) {
           {item.email}
         </Text>
 
-         <Text style={styles.phone}>
+        <Text style={styles.phone}>
           {item.phone}
         </Text>
       </View>

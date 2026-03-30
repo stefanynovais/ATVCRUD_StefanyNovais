@@ -6,6 +6,20 @@
       "lastName": "Cruz",
       "email": "rafael@email.com.br",
       "phone": "(19) 98743-9890"
+    },
+    {
+      "id": 2,
+      "firstName": "Maria",
+      "lastName": "Silva",
+      "email": "maria@email.com.br",
+      "phone": "(19) 91234-5678"
+    },
+    {
+      "id": 3,
+      "firstName": "João",
+      "lastName": "Souza",
+      "email": "joao@email.com.br",
+      "phone": "(19) 99876-5432"
     }
   ]
 }
