@@ -20,6 +20,13 @@
       "lastName": "Souza",
       "email": "joao@email.com.br",
       "phone": "(19) 99876-5432"
+    },
+    {
+      "id": 4,
+      "firstName": "Milena",
+      "lastName": "Moraes",
+      "email": "milena@email.com.br",
+      "phone": "(11) 99876-5432"
     }
   ]
 }
