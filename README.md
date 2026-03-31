@@ -1,7 +1,7 @@
 # 🌷 APP CRUD no React Native com APIs REST utilizando Fake API (Json-Server)
 
 ✨ O objetivo dessa API Rest desenvolvida em **React Native** é a criação, edição, exclusão e filtragem de usuários.
-Inclui também uma **Splash Screen animada**  💖. 
+
 
 ---
 
