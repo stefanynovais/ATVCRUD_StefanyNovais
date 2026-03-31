@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, Button } from "react-native";
+import CardPersonal from "../componentes/CardPersonal.js";
 
 import styles from "../styles/styles.js";
 
-import { getPeople, deletePerson } from "../servers/peopleCrud.js";
+import { getPeople } from "../servers/peopleCrud.js";
 import { TextInput } from "react-native-web";
 
 export default function HomeScreen({ navigation }) {
@@ -43,17 +44,6 @@ export default function HomeScreen({ navigation }) {
         }}
       />
 
-       {/* <FlatList
-        data={filtrarPessoa}
-        renderItem={({item}) => 
-        <Item firstName={item.firstName} 
-        lastName = {item.lastName}
-        email={item.email}
-        phone={item.phone}
-        />}
-        keyExtractor={item => item.id.toString()}
-      /> */}
-
       <Button
         title="Adicionar Pessoa"
         onPress={() => navigation.navigate("AddEditScreen")}
@@ -74,39 +64,6 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
-function CardPersonal({ item, navigation, refresh }) {
-  return (
-    <View style={styles.card}>
-      <View>
-        <Text style={styles.name}>
-          {item.firstName} {item.lastName}
-        </Text>
 
-        <Text style={styles.email}>
-          {item.email}
-        </Text>
-
-        <Text style={styles.phone}>
-          {item.phone}
-        </Text>
-      </View>
-
-      <View>
-        <Button
-          title="Editar"
-          onPress={() => navigation.navigate("AddEditScreen", { person: item })}
-        />
-
-        <Button
-          title="Deletar"
-          onPress={async () => {
-            await deletePerson(item.id);
-            refresh();
-          }}
-        />
-      </View>
-    </View>
-  );
-}
 
 
