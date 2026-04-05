@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, Button } from "react-native";
+import { View, Text, FlatList, Button, Alert } from "react-native";
+
 
 import styles from "../styles/styles.js";
 
@@ -11,22 +12,41 @@ export default function HomeScreen({ navigation }) {
   // estado da lista
   const [people, setPeople] = useState([]);
   const [busca, setBusca] = useState('');
+  const [loading, setLoading] = useState(true);
+
 
   //para filtrar o usuário
   const filtrarPessoa = people.filter(usuario => usuario.firstName.toLowerCase().includes(busca.toLowerCase().trim()));
 
   // função para carregar dados
   async function loadPeople() {
+    try {
+      setLoading(true);
 
-    const data = await getPeople();
+      const data = await getPeople();
+      setPeople(data);
 
-    setPeople(data);
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível carregar os dados");
+    } finally {
+      setLoading(false);
+    }
   }
 
   // executa ao abrir tela
   useEffect(() => {
     loadPeople();
   }, []);
+
+  //enquanto a api carrega, mostra o loading 
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+        <Text>Carregando...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -43,7 +63,7 @@ export default function HomeScreen({ navigation }) {
         }}
       />
 
-       {/* <FlatList
+      {/* <FlatList
         data={filtrarPessoa}
         renderItem={({item}) => 
         <Item firstName={item.firstName} 
