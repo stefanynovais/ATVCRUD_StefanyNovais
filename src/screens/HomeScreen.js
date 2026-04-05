@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, Button } from "react-native";
+import { View, Text, FlatList, Button, Alert} from "react-native";
 import CardPersonal from "../componentes/CardPersonal.js";
 
 import styles from "../styles/styles.js";
