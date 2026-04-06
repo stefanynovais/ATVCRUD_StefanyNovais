@@ -29,3 +29,8 @@ npm install
 ```bash
 npx expo start
   ```
+
+## 📹 Demonstração da API (Vídeo)
+
+**Link:** [https://youtu.be/sIxMNp4ulzY?si=wgrkur5CACQLKD_m](https://youtu.be/hbnTu0VsQ4E?si=EXslgQ4yf1VOhyQ_)
+
